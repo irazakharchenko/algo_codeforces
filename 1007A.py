@@ -1,35 +1,28 @@
- 
+def count_sort(mass, st):
+    i = st
+    while i < len(mass):
+        if mass[i] != mass[st]:
+            break
+        i += 1
+    return i - st
+
+
 n = int(input())
 
 a = [int(x) for x in input().split(" ")]
 
-min_a = min(a)
+a.sort()
 
-left = a.count(min_a)
+i = a.count(a[0]) 
+left = i
 res = n - left
-new_min = 1000000
-br = False
-while left < n and not br and len(a) > 0:
-    i = 0
-    while i < len(a):
-        if a[i] == min_a:
-            del(a[i])
-        else:
-            if a[i] < new_min:
-                new_min = a[i]
-            i += 1
-    if len(a) < left:
-        br = True
-    min_a = new_min
-    new_min = 100000000
-    prev = a.count(min_a)
-    left -= prev
+while i < len(a) :
+    count = count_sort(a, i)
+    i += count
+    left -= count
     if left < 0:
         res += left
         left = 0
-    else:
-        left += prev
-print(res) 
+    left += count
     
-
-        
+print(res)
