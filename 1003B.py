@@ -1,5 +1,6 @@
 a, b, x = [int(s) for s in input().split()]
 n = a+b
+
 if a >= b:
     s = "0"
     a -= 1
@@ -29,5 +30,5 @@ while len(s) < n:
         else:
             find_1 = s.find("1")
             s = s[:find_1] + "1" * b + s[find_1:]
-            
+
 print(s)
